@@ -1,69 +1,115 @@
 import React from "react";
-import { FaInstagram, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
-import logo from "../image/logo.svg"; // Replace with your logo path
+import {
+  FiFacebook,
+  FiTwitter,
+  FiInstagram,
+  FiArrowRight,
+} from "react-icons/fi";
 import { Link } from "react-router-dom";
+import Logo from "../Image/Logo.png";
 
 const Footer = () => {
-    return (
-        <footer className="bg-[#EBFFF6]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                {/* Logo and Navigation Links */}
-                <div className="md:flex-row justify-between items-center">
-                    <div className="md:flex md:items-center md:justify-center">
-                        <Link to ="/"><img src={logo} alt="Logo" className="h-16 w-auto md:items-center md:justify-center" /></Link>
-                    </div>
-                    <br></br>
+  return (
+    <footer className="bg-[#00715D] text-white px-6 md:px-16 pt-10 pb-6">
+      {/* Top section */}
+      <div className="max-w-7xl mx-auto w-full">
+        {/* Logo */}
+        <div className="mb-8">
+          <Link to="/">
+            <img src={Logo} alt="Logo" className="h-20 w-auto object-contain" />
+          </Link>
+        </div>
 
-                    {/* Navigation Links */}
-                    <div className="flex flex-wrap justify-center space-x-6 mt-4 md:mt-0">
-                        <a href="#home" className="text-gray-800 hover:text-green-600 font-medium">
-                            Home
-                        </a>
-                        <a href="#about" className="text-gray-800 hover:text-green-600 font-medium">
-                            About Us
-                        </a>
-                        <a href="#category" className="text-gray-800 hover:text-green-600 font-medium">
-                            Category
-                        </a>
-                        <a href="#new-arrival" className="text-gray-800 hover:text-green-600 font-medium">
-                            New Arrival
-                        </a>
-                        <a href="#offer" className="text-gray-800 hover:text-green-600 font-medium">
-                            Offer
-                        </a>
-                        <a href="#contact" className="text-gray-800 hover:text-green-600 font-medium">
-                            Contact Us
-                        </a>
-                    </div>
-                </div>
-
-                {/* Copyright and Social Media Section */}
-                <div className="flex flex-col md:flex-row justify-between items-center mt-6">
-                    {/* Copyright Text */}
-                    <div className="text-center text-gray-600 text-sm md:text-left md:w-1/2">
-                        &copy; 2025 All rights reserved by Kanha Collection
-                    </div>
-
-                    {/* Social Media Icons */}
-                    <div className="flex justify-center md:justify-end space-x-4 mt-4 md:mt-0">
-                        <button className="p-3 bg-green-700 text-white rounded-full shadow hover:bg-green-600">
-                            <FaInstagram size={20} />
-                        </button>
-                        <button className="p-3 bg-green-700 text-white rounded-full shadow hover:bg-green-600">
-                            <FaFacebook size={20} />
-                        </button>
-                        <button className="p-3 bg-green-700 text-white rounded-full shadow hover:bg-green-600">
-                            <FaLinkedin size={20} />
-                        </button>
-                        <button className="p-3 bg-green-700 text-white rounded-full shadow hover:bg-green-600">
-                            <FaTwitter size={20} />
-                        </button>
-                    </div>
-                </div>
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+          {/* Newsletter */}
+          <div>
+            <h2 className="text-xl font-medium mb-4 leading-snug">
+              Subscribe to our
+              <br />
+              newsletter
+            </h2>
+            <div className="flex mt-6">
+              <input
+                type="email"
+                placeholder="Email address"
+                className="px-4 py-2 rounded-l-md w-full bg-transparent border border-white placeholder-white text-white outline-none"
+              />
+              <button className="bg-white text-[#025D57] px-4 py-2 rounded-r-md">
+                <FiArrowRight />
+              </button>
             </div>
-        </footer>
-    );
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-medium mb-4">Quick Links</h3>
+            <ul className="space-y-2 text-white/90 text-md">
+              <li><Link to="/Allproduct">Collection</Link></li>
+              <li><Link to="/About">About</Link></li>
+              <li><Link to="/Diamond">About Diamond</Link></li>
+              <li><Link to="/Profilepage">Profile</Link></li>
+            </ul>
+          </div>
+
+          {/* Categories */}
+          <div>
+            <h3 className="text-lg font-medium mb-4">Categories</h3>
+            <ul className="space-y-2 text-white/90 text-md">
+              <li><a href="#">Ring</a></li>
+              <li><a href="#">Bracelet</a></li>
+              <li><a href="#">Neckless</a></li>
+              <li><a href="#">Earing</a></li>
+            </ul>
+          </div>
+
+          {/* Help */}
+          <div>
+            <h3 className="text-lg font-medium mb-4">Help</h3>
+            <ul className="space-y-2 text-white/90 text-md">
+              <li><a href="#">Privacy & Policy</a></li>
+              <li><Link to="/Contactus">Contact Us</Link></li>
+            </ul>
+          </div>
+        </div>
+
+        <hr className="border-white/20 mb-6" />
+
+        {/* Bottom section */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+          <p className="text-center md:text-left">
+            © 2025 Company Name. All rights reserved. Developed by Godhani technology
+          </p>
+          <div className="flex space-x-4 text-white text-xl">
+            <a
+              href="https://www.facebook.com/trifonjewels"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <FiFacebook />
+            </a>
+            <a
+              href="https://twitter.com/trifonjewels"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              <FiTwitter />
+            </a>
+            <a
+              href="https://www.instagram.com/trifonjewels"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FiInstagram />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
- 

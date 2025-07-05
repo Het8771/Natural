@@ -1,96 +1,112 @@
 import React, { useState } from "react";
-import Check from "../image/Check.svg";
-import Header from "../components/Header";
-;import Footer from "../components/Footer";
 
-const Checkout = () => {
-  const [quantities, setQuantities] = useState([1, 1]);
-
-  const handleQuantityChange = (index, delta) => {
-    setQuantities((prevQuantities) => {
-      const newQuantities = [...prevQuantities];
-      newQuantities[index] = Math.max(1, newQuantities[index] + delta);
-      return newQuantities;
-    });
-  };
+const CheckoutTabs = () => {
+  const [step, setStep] = useState("Personal");
 
   return (
-    <>
-    <Header/>
-    <div className="bg-[#EBFFF6] p-15 flex justify-center">
-      <div className="w-full max-w-9xl grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Section - Contact & Shipping Information */}
-        <div className="lg:col-span-2 bg-[#EBFFF6] p-6 ring-1 ring-[#74B6A9] rounded-lg">
-          <h2 className="text-lg font-semibold mb-4">Contact Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <input type="email" placeholder="Email Address" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-            <input type="tel" placeholder="Phone Number" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-          </div>
-          
-          <h2 className="text-lg font-semibold mb-4">Shipping Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="text" placeholder="First Name" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-            <input type="text" placeholder="Last Name" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-            <input type="text" placeholder="Address Line 1" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-            <input type="text" placeholder="Apt, Suit" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-          </div>
-          <div className="py-3">
-            <input type="text" placeholder="Address Line 2" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="text" placeholder="Country" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-            <input type="text" placeholder="Pin Code" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-            <input type="text" placeholder="State" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-            <input type="text" placeholder="City" className="ring-1 ring-[#74B6A9] outline-none p-3 rounded w-full" />
-          </div>
+    <div className="min-h-screen bg-white p-4 md:p-10 flex flex-col md:flex-row gap-6 justify-center  items-start">
+      {/* Left: Form Tabs */}
+      <div className="bg-white border border-gray-200  rounded-lg shadow-md w-full md:w-[65%] ">
+        {/* Tabs */}
+        <div className="flex w-full overflow-hidden mb-6">
+          {['Personal', 'Billing', 'Confirmation'].map((tab, index) => (
+            <button
+              key={tab}
+              onClick={() => setStep(tab)}
+              className={`flex-1 py-4 text-md text-white transition cursor-pointer ${
+                step === tab ? 'bg-[#00685E]' : 'bg-[#2F9C90] opacity-80'
+              } ${index === 0 ? 'rounded-tl-lg' : ''} ${index === 2 ? 'rounded-tr-lg' : ''}`}
+            >
+              {tab}
+            </button>
+          ))}
         </div>
 
-        {/* Right Section - Order Summary */}
-        <div className="bg-[#EBFFF6] ring-1 ring-[#74B6A9] p-6 rounded-lg">
-          <div className="space-y-4 border-b pb-4">
-            {[1, 2].map((item, index) => (
-              <div key={index} className="flex items-center gap-4 flex-wrap">
-                <img src={Check} alt="Product" className="w-16 h-16 rounded" />
-                <div className="flex-1 min-w-[100px]">
-                  <p className="font-semibold">Krishna's Grace</p>
-                  <p className="line-through text-sm text-gray-500">₹2000</p>
-                  <p className="text-lg font-bold">₹1200</p>
-                </div>
-                <div className="flex items-center border rounded w-24 justify-between">
-                  <button className="px-3 py-1" onClick={() => handleQuantityChange(index, -1)}>-</button>
-                  <span className="px-2">{quantities[index]}</span>
-                  <button className="px-3 py-1" onClick={() => handleQuantityChange(index, 1)}>+</button>
-                </div>
-              </div>
-            ))}
-          </div>
+     
+        {/* Personal Info Form */}
+        {step === "Personal" && (
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm px-3">
+            <div className="flex flex-col">
+              <label className="text-[#04675C] text-sm  mb-1">First Name*</label>
+              <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-[#04675C]" />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-[#04675C] text-sm  mb-1">Last Name*</label>
+              <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-[#04675C]" />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-[#04675C] text-sm mb-1">Email Address*</label>
+              <input type="email" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-[#04675C]" />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-[#04675C] text-sm mb-1">Phone Number*</label>
+              <input type="tel" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-[#04675C]" />
+            </div>
+            <div className="flex flex-col md:col-span-2">
+              <label className="text-[#04675C] text-sm mb-1">Street Address*</label>
+              <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-[#04675C]" />
+            </div>
+            <div className="flex flex-col md:col-span-2">
+              <label className="text-[#04675C] text-sm mb-1">Town / City*</label>
+              <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-[#04675C]" />
+            </div>
+            <div className="flex flex-col md:col-span-2">
+              <label className="text-[#04675C] text-sm mb-1">Country*</label>
+              <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-[#04675C]" />
+            </div>
+            <div className="flex flex-col md:col-span-2">
+              <label className="text-[#04675C] text-sm mb-1">Postcode / Zip*</label>
+              <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-[#04675C]" />
+            </div>
+            <button
+              type="button"
+              className="md:col-span-2 mt-4 mb-3 w-[190px] bg-[#00685E] text-white py-3 px-5 rounded-full hover:bg-[#03564e] text-sm cursor-pointer "
+            >
+              Proceed to Next Step
+            </button>
+          </form>
+        )}
+      </div>
 
-          {/* Total Pricing */}
-          <div className="mt-4 space-y-2">
-            <p className="font-bold text-lg">Order Summary</p>
-            <div className="flex justify-between text-lg">
-              <p>Total MRP</p>
-              <p>₹{quantities.reduce((total, qty) => total + qty * 1200, 0)}</p>
-            </div>
-            <div className="flex justify-between text-lg">
-              <p>Discount</p>
-              <p>₹00.00</p>
-            </div>
-            <hr className="my-2" />
-            <div className="flex justify-between font-bold text-lg">
-              <p>Total MRP</p>
-              <p>₹{quantities.reduce((total, qty) => total + qty * 1200, 0)}</p>
-            </div>
+      {/* Right: Cart Summary */}
+      <div className="w-full md:w-[30%] bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-[#04675C] text-white text-center py-4 font-semibold">
+          Cart Details
+        </div>
+        <div className="p-5 text-sm bg-gray-50">
+          <div className="grid grid-cols-3 font-semibold border-b border-dashed border-gray-300 pb-6 text-[#00685E]">
+            <span>PRODUCT</span>
+            <span className="text-center">Quantity</span>
+            <span className="text-right">SUBTOTAL</span>
           </div>
-
-          {/* Buy Now Button */}
-          <button className="w-full bg-[#1B342F] text-white py-3 rounded mt-4 hover:bg-[#163028] transition">Buy Now</button>
+          {[180, 120, 100].map((price, idx) => (
+            <div key={idx} className="grid grid-cols-3 py-2 text-gray-400">
+              <span>Amrita Antique Designer</span>
+              <span className="text-center">01</span>
+              <span className="text-right">${price}</span>
+            </div>
+          ))}
+          <div className="py-4 mt-2 border-t border-dashed border-gray-400">
+            <div className="flex justify-between">
+              <span className="text-[#00685E]">SUBTOTAL</span>
+              <span className="font-medium text-gray-400">$400</span>
+            </div>
+            </div>
+            <div className="py-2 border-t border-dashed border-gray-400"></div>
+            <div className="flex justify-between mb-4">
+              <span className="text-[#00685E]">SHIPPING</span>
+              <span className="font-medium text-gray-400">$100</span>
+            </div>
+            <div className="py-2 border-t border-dashed border-gray-400"></div>
+            <div className="flex justify-between text-lg">
+              <span className="text-[#00685E]">Total</span>
+              <span className="text-gray-400">$500</span>
+            </div>
+          
         </div>
       </div>
     </div>
-    <Footer/>
-    </>
   );
 };
 
-export default Checkout;
+export default CheckoutTabs;

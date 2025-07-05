@@ -1,362 +1,100 @@
 import React, { useState } from "react";
-import Cart from "../image/Cart.svg";
-import { User, Mail, Phone, MessageSquare, MapPin } from "lucide-react"
-import pro from "../image/pro.svg";
-import Header from "../components/Header";
+import cart from "../Image/cart.svg";
+import { Link } from "react-router-dom";
 
-
-const App = () => {
+const CheckoutTabs = () => {
   const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Krishna's Grace",
-      description: "Immerse in Krishna's grace with our timeless collection, blending.",
-      price: 1200,
-      image: Cart,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      name: "Krishna's Grace",
-      description: "Immerse in Krishna's grace with our timeless collection, blending.",
-      price: 1200,
-      image: Cart,
-      quantity: 1,
-    },
-    {
-      id: 3,
-      name: "Krishna's Grace",
-      description: "Immerse in Krishna's grace with our timeless collection, blending.",
-      price: 1200,
-      image: Cart,
-      quantity: 1,
-    },
+    { id: 1, name: "Amrita Antique Designer", price: 180, qty: 1 },
+    { id: 2, name: "Amrita Antique Designer", price: 180, qty: 1 },
+    { id: 3, name: "Amrita Antique Designer", price: 180, qty: 1 },
+    { id: 4, name: "Amrita Antique Designer", price: 180, qty: 1 },
   ]);
 
-  const handleQuantityChange = (id, delta) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
+  const handleQtyChange = (id, delta) => {
+    setCartItems(prev =>
+      prev.map(item =>
         item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
+          ? { ...item, qty: Math.max(1, item.qty + delta) }
           : item
       )
     );
   };
 
-  const totalAmount = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-
-  const product = [
-    {
-      id: 1,
-      title: "Krishna's Grace",
-      price: "₹1200.00",
-      description:
-        "Immerse in Krishna's grace with our timeless collection, blending",
-      rating: 4.5,
-      reviews: 76,
-      image: pro
-    },
-    {
-      id: 2,
-      title: "Krishna's Grace",
-      price: "₹1200.00",
-      description:
-        "Immerse in Krishna's grace with our timeless collection, blending",
-      rating: 4.5,
-      reviews: 76,
-      image: pro
-    },
-    {
-      id: 3,
-      title: "Krishna's Grace",
-      price: "₹1200.00",
-      description:
-        "Immerse in Krishna's grace with our timeless collection, blending",
-      rating: 4.5,
-      reviews: 76,
-      image: pro
-    },
-    {
-      id: 4,
-      title: "Krishna's Grace",
-      price: "₹1200.00",
-      description:
-        "Immerse in Krishna's grace with our timeless collection, blending",
-      rating: 4.5,
-      reviews: 76,
-      image: pro
-    },
-    {
-      id: 5,
-      title: "Krishna's Grace",
-      price: "₹1200.00",
-      description:
-        "Immerse in Krishna's grace with our timeless collection, blending",
-      rating: 4.5,
-      reviews: 76,
-      image: pro
-    },
-    {
-      id: 6 ,
-      title: "Krishna's Grace",
-      price: "₹1200.00",
-      description:
-        "Immerse in Krishna's grace with our timeless collection, blending",
-      rating: 4.5,
-      reviews: 76,
-      image: pro
-    },
-    {
-      id: 6 ,
-      title: "Krishna's Grace",
-      price: "₹1200.00",
-      description:
-        "Immerse in Krishna's grace with our timeless collection, blending",
-      rating: 4.5,
-      reviews: 76,
-      image: pro
-    },
-    {
-      id: 6 ,
-      title: "Krishna's Grace",
-      price: "₹1200.00",
-      description:
-        "Immerse in Krishna's grace with our timeless collection, blending",
-      rating: 4.5,
-      reviews: 76,
-      image: pro
-    },
-
-
-  ];
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const discount = 0;
+  const total = subtotal - discount;
 
   return (
-    <>
-    <Header/>
-    <div className="bg-[#EBFFF6] min-h-screen p-4 md:p-6 lg:p-10 xl:p-12">
-      {/* Breadcrumb */}
-      <div className="text-gray-600 text-lg md:text-2xl lg:text-2xl xl:text-3xl mb-4">Home / Cart</div>
-
-      {/* Product List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8">
-        <div className="lg:col-span-8 xl:col-span-9">
-          <div className="flex justify-between">
-            <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-3xl mb-4">Product</h2>
-            <h2 className="text-lg md:text-2xl lg:text-2xl xl:text-3xl mb-4">Price</h2>
+    <div className="px-4 py-6 bg-white min-h-screen">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        {/* Cart Items Table */}
+        <div className="lg:col-span-2 bg-white rounded-md shadow overflow-hidden w-full">
+          <div className="bg-[#04675C] text-white font-semibold px-4 py-3 hidden sm:grid grid-cols-6 text-sm">
+            <div className="col-span-3">Product</div>
+            <div className="text-center">Price</div>
+            <div className="text-center">Quantity</div>
+            <div className="text-center">Total</div>
           </div>
-          <hr className="my-2 text-[#1B342F] " />
+
           {cartItems.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col sm:flex-row items-center justify-between bg-[#EBFFF6] p-4 rounded-lg mb-4 space-x-5"
+              className="grid grid-cols-1 sm:grid-cols-6 items-center gap-4 px-4 py-4 border-t border-gray-300 text-sm"
             >
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-40 h-40 object-cover rounded mb-2 sm:mb-0"
-              />
-              <div className="flex-grow sm:ml-4 text-center sm:text-left">
-                <h3 className="text-2xl text-[#1B342F] font-semibold">{item.name}</h3>
-                <p className="text-[#1B342F] text-lg">{item.description}</p>
+              <div className="sm:col-span-3 flex items-center gap-3">
+                <button className="text-[#04675C] text-xl">×</button>
+                <img src={cart} alt="product" className="w-12 h-12 object-cover rounded" />
+                <span className="text-gray-700">{item.name}</span>
               </div>
-              <div className="flex items-center space-x-3 mt-2 sm:mt-0">
+              <div className="text-center">${item.price.toFixed(2)}</div>
+              <div className="flex justify-center items-center gap-2 border px-4 py-1 rounded-full w-fit mx-auto">
                 <button
-                  onClick={() => handleQuantityChange(item.id, -1)}
-                  className="w-10 h-10 flex items-center justify-center bg-[#1B342F] text-white rounded"
+                  className="text-gray-600 hover:text-black"
+                  onClick={() => handleQtyChange(item.id, -1)}
                 >
-                  -
+                  −
                 </button>
-                <span>{item.quantity}</span>
+                <span className="w-6 text-center font-medium">{item.qty}</span>
                 <button
-                  onClick={() => handleQuantityChange(item.id, +1)}
-                  className="w-10 h-10 flex items-center justify-center bg-[#1B342F] text-white rounded"
+                  className="text-gray-600 hover:text-black"
+                  onClick={() => handleQtyChange(item.id, 1)}
                 >
-                  +
+                  ＋
                 </button>
               </div>
-              <div className="text-lg font-semibold sm:ml-4">
-                ₹{(item.price * item.quantity).toFixed(2)}
-              </div>
+              <div className="text-center">${(item.price * item.qty).toFixed(2)}</div>
             </div>
           ))}
         </div>
 
-        {/* Order Summary */}
-        <div className="lg:col-span-4 xl:col-span-3 bg-[#EBFFF6] p-6 h-80 w-full ring-1 ring-[#74B6A9] rounded-lg ml-0 md:ml-4 lg:ml-6 xl:ml-8">
-          <h2 className="text-lg font-bold mb-4">Total Amount</h2>
-          <div className="flex justify-between mb-2 space-y-2">
-            <span>Total MRP</span>
-            <span>₹{totalAmount.toFixed(2)}</span>
+        {/* Cart Total Summary */}
+        <div className="bg-white rounded-md shadow-md overflow-hidden w-full h-fit">
+          <div className="bg-[#04675C] text-white font-semibold px-6 py-3">
+            Cart Total
           </div>
-          <div className="flex justify-between mb-2 space-y-2">
-            <span>Discount</span>
-            <span>₹0.00</span>
-          </div>
-          <hr className="my-2" />
-          <div className="flex justify-between font-bold text-lg space-y-2">
-            <span>Total MRP</span>
-            <span>₹{totalAmount.toFixed(2)}</span>
-          </div>
-          <button className="w-full mt-4 bg-[#1B342F] text-white py-2 rounded hover:bg-[#143026] space-y-2">
-            Buy Now
-          </button>
-        </div>
-      </div>
-
-      {/* Recommended Products Section */}
-      <h3 className="mt-8 text-lg font-bold md:text-2xl lg:text-2xl xl:text-3xl">Recommended Product</h3>
-      <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 py-19">
-        {product.map((products) => (
-          <div
-            key={products.id}
-            className="ring-1 ring-[#74B6A9] bg-[#EBFFF6] py-3 px-4 outline-none rounded-lg shadow-md  p-4"
-          >
-            {/* Product Image */}
-            <img
-              src={products.image}
-              alt={products.title}
-              className="rounded-lg w-full h-auto mb-4"
-            />
-
-            {/* Product Details */}
-            <h3 className="text-lg font-semibold">{products.title}</h3>
-            <p className="text-xl font-bold mt-2">{products.price}</p>
-            <p className="text-sm text-gray-600">{products.description}</p>
-
-
-            {/* Rating */}
-            <div className="flex items-center mt-2">
-              <span className="text-yellow-500 text-lg">★★★★★</span>
-              <span className="ml-1 text-sm">{products.rating} ({products.reviews})</span>
+          <div className="p-6 space-y-4 text-sm">
+            <div className="flex justify-between  border-b border-gray-300 pb-2">
+              <span className="text-[#04675C] font-semibold">SUBTOTAL</span>
+              <span className="text-gray-700">${subtotal.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between border-b border-gray-300 pb-2">
+              <span className="text-[#04675C] font-semibold">DISCOUNT</span>
+              <span className="text-gray-700">---</span>
+            </div>
+            <div className="flex justify-between text-base font-semibold">
+              <span className="text-[#04675C]">TOTAL</span>
+              <span className="text-gray-800">${total.toFixed(2)}</span>
             </div>
           </div>
-        ))}
+          <Link to="/Checkout">
+            <div className="bg-[#04675C] text-white text-center py-3 font-semibold cursor-pointer hover:bg-[#03564e] transition">
+              Proceed To Checkout
+            </div>
+          </Link>
+        </div>
       </div>
-        <div className="flex flex-col md:flex-row w-full  absoulate">
-                     {/* Left side - Form */}
-                     <div className="flex-[2] h-200 bg-[#e8f7f2] p-6 md:p-12">
-                         <div className="max-w-md mx-auto mr-150">
-                             <div className="text-center mb-8">
-                                 <h2 className="text-gray-800 text-lg font-medium ">Contact</h2>
-                                 <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Connect With Us Today!</h1>
-                             </div>
-     
-                             <form className="space-y-6">
-                                 <div className="space-y-2">
-                                     <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
-                                         Full Name
-                                     </label>
-                                     <div className="relative">
-                                         <div className="absolute inset-y-0 left-3 flex items-center">
-                                             <User className="h-5 w-5 text-gray-400" />
-                                         </div>
-                                         <input
-                                             type="text"
-                                             id="fullName"
-                                             placeholder="Enter Your Full Name"
-                                             className="pl-10 w-200 ring-1 ring-[#74B6A9] bg-[#EBFFF6] py-3 px-4 outline-none focus:ring-2 focus:ring-[#74B6A9] focus:border-transparent"
-                                         />
-                                     </div>
-                                 </div>
-     
-                                 <div className="space-y-2">
-                                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                                         Email
-                                     </label>
-                                     <div className="relative">
-                                         <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                                             <Mail className="h-5 w-5 text-gray-400" />
-                                         </div>
-                                         <input
-                                             type="email"
-                                             id="email"
-                                             placeholder="Enter Your Gmail Address"
-                                             className="pl-10 w-200 ring-1 ring-[#74B6A9] bg-[#EBFFF6] py-3 px-4 outline-none focus:ring-2 focus:ring-[#74B6A9] focus:border-transparent"
-                                         />
-                                     </div>
-                                 </div>
-     
-                                 <div className="space-y-2">
-                                     <label htmlFor="mobile" className="block text-sm font-medium text-gray-700">
-                                         Mobile Number
-                                     </label>
-                                     <div className="relative">
-                                         <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                                             <Phone className="h-5 w-5 text-gray-400" />
-                                         </div>
-                                         <input
-                                             type="tel"
-                                             id="mobile"
-                                             placeholder="Enter Your Mobile Number"
-                                             className="pl-10 w-200 ring-1 ring-[#74B6A9] bg-[#EBFFF6] py-3 px-4 outline-none focus:ring-2 focus:ring-[#74B6A9] focus:border-transparent"
-                                         />
-                                     </div>
-                                 </div>
-     
-                                 <div className="space-y-2">
-                                     <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                                         Send Message
-                                     </label>
-                                     <div className="relative">
-                                         <div className="absolute top-3 left-3 flex items-start pointer-events-none">
-                                             <MessageSquare className="h-5 w-5 text-gray-400" />
-                                         </div>
-                                         <textarea
-                                             id="message"
-                                             rows={4}
-                                             placeholder="Send Your message"
-                                             className="pl-10 w-200 ring-1 ring-[#74B6A9] bg-[#EBFFF6] py-3 px-4 outline-none focus:ring-2 focus:ring-[#74B6A9] focus:border-transparent"
-                                         />
-                                     </div>
-                                 </div>
-                             </form>
-                         </div>
-                     </div>
-     
-     
-                     {/* Right side - Contact Info */}
-                     <div className="flex-1 bg-[#1a3b39] h-200 md:p-15 flex items-center justify-center relative">
-                         <div className="bg-[#EBFFF6] mt-10 ring-1 ring-[#74B6A9] p-9 max-w-sm w-full absolute mr-150">
-                             <div className="space-y-7">
-                                 <div className="flex items-center gap-4">
-                                     <div className="bg-[#1a3b39] rounded-full p-2 flex items-center justify-center">
-                                         <Mail className="h-5 w-5 text-white" />
-                                     </div>
-                                     <div>
-                                         <p className="text-sm text-gray-500">Email Address</p>
-                                         <p className="font-medium">xyztechnology04@gmail.com</p>
-                                     </div>
-                                 </div>
-     
-                                 <div className="flex items-center gap-4">
-                                     <div className="bg-[#1a3b39] rounded-full p-2 flex items-center justify-center">
-                                         <Phone className="h-5 w-5 text-white" />
-                                     </div>
-                                     <div>
-                                         <p className="text-sm text-gray-500">Phone Number</p>
-                                         <p className="font-medium">+91 83000 00042</p>
-                                     </div>
-                                 </div>
-     
-                                 <div className="flex items-center gap-4">
-                                     <div className="bg-[#1a3b39] rounded-full p-2 flex items-center justify-center">
-                                         <MapPin className="h-5 w-5 text-white" />
-                                     </div>
-                                     <div>
-                                         <p className="text-sm text-gray-500">Location</p>
-                                         <p className="font-medium">B-8, 210, Township-2 Sarthana Jakatnaka, Surat Gujarat 395008</p>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div> 
     </div>
-    </>
   );
 };
 
-export default App;
+export default CheckoutTabs;
