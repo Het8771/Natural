@@ -7,7 +7,7 @@ import {
   FiMenu,
   FiX,
 } from "react-icons/fi";
-import Logo from "../Image/Logo.png";
+import Logo from "../image/Logo.png";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
