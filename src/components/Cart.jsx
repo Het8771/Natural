@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiPlus, FiTrash2 } from "react-icons/fi"; // Updated icon import
-import Cart from "../image/Cart.svg";
+import Cart1 from "../image/Cart1.svg";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([
@@ -60,7 +60,7 @@ const Cart = () => {
                   <FiTrash2 size={18} />
                 </button>
                 <img
-                  src={cart}
+                  src={Cart1}
                   alt={item.name}
                   className="w-12 h-12 rounded object-cover"
                 />
