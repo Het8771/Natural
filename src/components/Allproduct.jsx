@@ -107,14 +107,14 @@ const Allproduct = () => {
             <select
               value={selectedColor}
               onChange={(e) => setSelectedColor(e.target.value)}
-              className={`text-white text-sm px-4 py-1.5 rounded-full shadow transition ${
+              className={`text-white text-sm px-4 py-1.5 rounded-full shadow transition outline-none bg-teal-700 ${
                 selectedColor === "Gold"
-                  ? "bg-yellow-500"
+                  ? "bg-teal-700"
                   : selectedColor === "Silver"
-                  ? "bg-gray-400"
+                  ? "bg-teal-700"
                   : selectedColor === "Rose Gold"
-                  ? "bg-rose-400"
-                  : "bg-teal-700 hover:bg-teal-800"
+                  ? "bg-teal-700"
+                  : ""
               }`}
             >
               <option value="">Select Color</option>
@@ -126,7 +126,7 @@ const Allproduct = () => {
             <select
               value={selectedSize}
               onChange={(e) => setSelectedSize(e.target.value)}
-              className="bg-teal-700 text-white text-sm px-4 py-1.5 rounded-full shadow hover:bg-teal-800 transition"
+              className="bg-teal-700 text-white text-sm px-4 py-1.5 rounded-full shadow outline-none transition"
             >
               <option value="">Select Size</option>
               <option value="6">Size 6</option>
@@ -157,7 +157,7 @@ const Allproduct = () => {
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
-            className="bg-teal-700 text-white text-sm px-4 py-1.5 rounded-full shadow hover:bg-teal-800 transition"
+            className="bg-teal-700 text-white text-sm px-4 py-1.5 rounded-full outline-none shadow transition"
           >
             <option value="az">Name A-Z</option>
             <option value="za">Name Z-A</option>
