@@ -21,7 +21,7 @@
 
 
 
-import heroBg from "../Image/studiobanner.svg";
+import heroBg from "../image/studiobanner.svg";
 import { Link } from "react-router-dom";
 
 const Creativestudiohero = ({ children }) => {
