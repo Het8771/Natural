@@ -6,7 +6,7 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import Logo from "../Image/Logo.png";
+import Logo from "../image/Logo.png";
 
 const Footer = () => {
   return (
