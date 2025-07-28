@@ -108,7 +108,6 @@ const ProfilePage = () => {
     };
     setAddresses([...addresses, newAddress]);
   };
-  
 
   const [showModal, setShowModal] = useState(false);
 
@@ -119,7 +118,6 @@ const ProfilePage = () => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
 
   return (
     <div className="min-h-screen bg-white p-4 md:p-6 flex flex-col md:flex-row gap-4">
@@ -204,7 +202,7 @@ const ProfilePage = () => {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleInputChange}
-                    className="w-full mt-1 p-2 border rounded-md text-sm"
+                    className="w-full mt-1 p-2 border border-gray-400 outline-none rounded-md text-sm"
                   />
                 </div>
                 <div>
@@ -214,7 +212,7 @@ const ProfilePage = () => {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    className="w-full mt-1 p-2 border rounded-md text-sm"
+                    className="w-full mt-1 p-2 border border-gray-400 outline-none rounded-md text-sm"
                   />
                 </div>
               </div>
@@ -226,7 +224,7 @@ const ProfilePage = () => {
                   name="email"
                   value={formData.email}
                   disabled
-                  className="w-full mt-1 p-2 border rounded-md text-sm bg-gray-100 text-gray-500 cursor-not-allowed"
+                  className="w-full mt-1 p-2 border border-gray-400 outline-none rounded-md text-sm bg-gray-100 text-gray-500 cursor-not-allowed"
                 />
               </div>
 
@@ -237,7 +235,7 @@ const ProfilePage = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border rounded-md text-sm"
+                  className="w-full mt-1 p-2 border border-gray-400 outline-none rounded-md text-sm"
                 />
               </div>
 
@@ -248,14 +246,14 @@ const ProfilePage = () => {
                   name="dob"
                   value={formData.dob}
                   onChange={handleInputChange}
-                  className="w-full mt-1 p-2 border rounded-md text-sm"
+                  className="w-full mt-1 p-2 border border-gray-400 outline-none rounded-md text-sm"
                 />
               </div>
 
-              <div className="pt-4">
+              <div className="flex justify-center py-3">
                 <button
                   type="submit"
-                  className="w-full bg-teal-700 text-white py-2 rounded-full hover:bg-teal-800 transition"
+                  className="w-[150px] bg-teal-700 text-white py-2 rounded-full cursor-pointer transition"
                 >
                   Save Changes
                 </button>
@@ -271,7 +269,7 @@ const ProfilePage = () => {
               {orders.map((order, index) => (
                 <div
                   key={index}
-                  className="border rounded-lg overflow-hidden shadow-sm bg-white cursor-pointer hover:bg-gray-50"
+                  className="border border-gray-400 outline-none rounded-lg overflow-hidden shadow-sm bg-white cursor-pointer hover:bg-gray-50"
                   onClick={() => setSelectedOrder(order)}
                 >
                   <div className="bg-teal-700 text-white flex justify-between items-center px-4 py-2 text-sm">
@@ -288,7 +286,7 @@ const ProfilePage = () => {
                       <img
                         src={order.item.image}
                         alt={order.item.name}
-                        className="w-16 h-16 rounded object-cover border"
+                        className="w-16 h-16 rounded object-cover border border-gray-400 outline-none"
                       />
                       <div>
                         <div className="font-medium">{order.item.name}</div>
@@ -320,8 +318,12 @@ const ProfilePage = () => {
                     <div key={index} className="mb-6 ml-4">
                       <div className="absolute w-3 h-3 bg-teal-700 rounded-full -left-[7px] top-[6px]"></div>
                       <h3 className="font-semibold">{track.location}</h3>
-                      <p className="text-sm text-gray-500">{track.description}</p>
-                      <span className="text-xs text-gray-400">{track.timestamp}</span>
+                      <p className="text-sm text-gray-500">
+                        {track.description}
+                      </p>
+                      <span className="text-xs text-gray-400">
+                        {track.timestamp}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -383,22 +385,20 @@ const ProfilePage = () => {
                     </div>
                   </div>
                 ))}
-                <div className="text-right pt-2">
-                  Total ₹160.00
-                </div>
+                <div className="text-right pt-2">Total ₹160.00</div>
               </div>
             </div>
           </div>
         )}
 
-{activeTab === "Address" && !selectedOrder && (
+        {activeTab === "Address" && !selectedOrder && (
           <div>
             <h2 className="text-xl font-semibold mb-4">My Addresses</h2>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
               {addresses.map((addr) => (
                 <div
                   key={addr.id}
-                  className="border rounded p-4 relative hover:shadow"
+                  className="border border-gray-400 outline-none rounded p-4 relative hover:shadow"
                 >
                   <h3 className="font-semibold">{addr.name}</h3>
                   {addr.default && (
@@ -430,40 +430,67 @@ const ProfilePage = () => {
             {/* Add New Address Button */}
             <button
               onClick={handleAddAddress1}
-              className="bg-teal-700 text-white py-2 px-4 rounded-full hover:bg-teal-800"
+              className="bg-teal-700 text-white py-2 px-4 rounded-full cursor-pointer"
             >
               Add New Address
             </button>
 
             {/* Modal */}
             {showModal && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50">
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm ">
                 <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-6">
-                  <h2 className="text-xl font-semibold mb-2">Add New Address</h2>
+                  <h2 className="text-xl font-semibold mb-2">
+                    Add New Address
+                  </h2>
                   <p className="text-gray-600 mb-6">
-                    Enter your address details below. This will be used for shipping your orders.
+                    Enter your address details below. This will be used for
+                    shipping your orders.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="First Name" className="border p-2 rounded" />
-                    <input type="text" placeholder="Last Name" className="border p-2 rounded" />
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      className="border p-2 rounded border-gray-400 outline-none"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      className="border p-2 rounded border-gray-400 outline-none"
+                    />
                     <input
                       type="text"
                       placeholder="Street Address"
-                      className="border p-2 rounded md:col-span-2"
+                      className="border p-2 rounded md:col-span-2 border-gray-400 outline-none"
                     />
-                    <input type="text" placeholder="City" className="border p-2 rounded" />
-                    <input type="text" placeholder="State" className="border p-2 rounded" />
-                    <input type="text" placeholder="ZIP Code" className="border p-2 rounded" />
-                    <input type="text" placeholder="Phone Number" className="border p-2 rounded" />
+                    <input
+                      type="text"
+                      placeholder="City"
+                      className="border p-2 rounded border-gray-400 outline-none"
+                    />
+                    <input
+                      type="text"
+                      placeholder="State"
+                      className="border p-2 rounded border-gray-400 outline-none"
+                    />
+                    <input
+                      type="text"
+                      placeholder="ZIP Code"
+                      className="border p-2 rounded border-gray-400 outline-none"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Phone Number"
+                      className="border p-2 rounded border-gray-400 outline-none"
+                    />
                   </div>
                   <div className="flex justify-end mt-6 gap-4">
                     <button
                       onClick={handleCloseModal}
-                      className="border border-gray-400 text-gray-700 py-2 px-4 rounded-full hover:bg-gray-100"
+                      className="border border-gray-400 text-gray-700 py-2 px-4 rounded-full cursor-pointer"
                     >
                       Cancel
                     </button>
-                    <button className="bg-teal-700 text-white py-2 px-4 rounded-full hover:bg-teal-800">
+                    <button className="bg-teal-700 text-white py-2 px-4 rounded-full cursor-pointer">
                       Save Address
                     </button>
                   </div>
@@ -478,4 +505,3 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
-

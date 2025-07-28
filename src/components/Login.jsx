@@ -7,7 +7,7 @@ const LoginPage = () => {
   const togglePassword = () => setShowPassword(!showPassword);
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-4">
+    <div className="max-w-7xl mx-auto bg-white flex items-center justify-center p-3">
       <div className="bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col md:flex-row w-full max-w-5xl">
         {/* Left Side - Form */}
         <div className="w-full md:w-1/2 p-10">

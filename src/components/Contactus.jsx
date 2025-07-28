@@ -1,41 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 
-const CheckoutTabs = () => {
-  const [step, setStep] = useState("Personal");
-
+const Contactus = () => {
   return (
-    <div className="min-h-screen bg-white p-4 md:p-10 flex flex-col gap-6 justify-center items-center">
-      {/* Contact Section */}
+    <div className="min-h-screen bg-white p-4 md:p-10 flex flex-col items-center">
       <div className="bg-white rounded-md shadow-md w-full max-w-6xl overflow-hidden">
         {/* Header */}
         <div className="bg-[#00685E] py-4 px-6 text-white font-semibold text-lg rounded-t-md">
           Get In Touch With Us
         </div>
 
-        <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Left Column - Contact Info */}
-          <div className="space-y-8">
-            <div>
-              <h4 className="text-sm font-semibold text-[#00685E] mb-1">Phone Number</h4>
-              <p className="text-sm text-gray-800">0012334566</p>
-              <hr className="mt-2 border-gray-300" />
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-[#00685E] mb-1">Email Address</h4>
-              <p className="text-sm text-gray-800">Johndoe@example.com</p>
-              <hr className="mt-2 border-gray-300" />
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold text-[#00685E] mb-1">Location</h4>
-              <p className="text-sm text-gray-800">Lorem Ipsum</p>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Left Column - Full Map */}
+          <div className="h-80 md:h-auto w-full">
+            <iframe
+              title="Location Map"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609928143!2d72.74109867790184!3d19.082522317090732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63b7f254b37%3A0x3d6b5cf5bcbdedb5!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1686302955555!5m2!1sen!2sin"
+              className="w-full h-full"
+            ></iframe>
           </div>
 
-          {/* Right Column - Form */}
-          <div className="md:col-span-2">
-            <h3 className="text-[#00685E] font-semibold text-base mb-2">Send us a message</h3>
+          {/* Right Column - Contact Form */}
+          <div className="p-6">
+            <h3 className="text-[#00685E] font-semibold text-base mb-2">
+              Send us a message
+            </h3>
             <p className="text-sm text-gray-600 mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla nunc in molestie feugiat.
+              We'd love to hear from you. Fill out the form and we’ll get back to you soon.
             </p>
             <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
@@ -64,7 +60,7 @@ const CheckoutTabs = () => {
               ></textarea>
               <button
                 type="submit"
-                className="bg-[#00685E] hover:bg-[#03564e] text-white text-sm font-semibold px-4 py-2 ml-[10px] rounded-full md:col-span-2 mx-auto"
+                className="bg-[#00685E] hover:bg-[#03564e] text-white text-sm font-semibold px-6 py-2 rounded-full md:col-span-2 mx-auto"
               >
                 Send Message
               </button>
@@ -76,4 +72,4 @@ const CheckoutTabs = () => {
   );
 };
 
-export default CheckoutTabs;
+export default Contactus;

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FiMinus, FiPlus, FiHeart } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
 import singlepro from "../Image/singlepro.svg";
 import singlepro2 from "../Image/singlepro2.svg";
 import singlepro3 from "../Image/singlepro3.svg";
+import { Link } from "react-router-dom";
+import Producttab from "../components/Producttab";
 
 const ProductDetail = () => {
   const thumbnails = [singlepro, singlepro2, singlepro3];
@@ -12,6 +14,18 @@ const ProductDetail = () => {
   const [purity, setPurity] = useState("14KT");
   const [size, setSize] = useState("23");
   const [quantity, setQuantity] = useState(1);
+  const [isZooming, setIsZooming] = useState(false);
+  const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+  const [isMobileZoomOpen, setIsMobileZoomOpen] = useState(false);
+  const imageRef = useRef();
+
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } =
+      imageRef.current.getBoundingClientRect();
+    const x = ((e.pageX - left - window.scrollX) / width) * 100;
+    const y = ((e.pageY - top - window.scrollY) / height) * 100;
+    setZoomPosition({ x, y });
+  };
 
   const similarProducts = [
     {
@@ -24,58 +38,95 @@ const ProductDetail = () => {
     },
     {
       id: 2,
-      name: "Amrita Antique Designer",
-      oldPrice: "$230.00",
-      newPrice: "$200.00",
-      discount: "-13%",
+      name: "Zara Royal Jewel",
+      oldPrice: "$220.00",
+      newPrice: "$190.00",
+      discount: "-14%",
       image: singlepro3,
     },
     {
       id: 3,
-      name: "Amrita Antique Designer",
-      oldPrice: "$230.00",
-      newPrice: "$200.00",
-      discount: "-13%",
+      name: "Bella Grace Design",
+      oldPrice: "$240.00",
+      newPrice: "$210.00",
+      discount: "-12%",
       image: singlepro3,
     },
     {
       id: 4,
-      name: "Amrita Antique Designer",
-      oldPrice: "$230.00",
-      newPrice: "$200.00",
-      discount: "-13%",
+      name: "Evelyn Gold Twist",
+      oldPrice: "$210.00",
+      newPrice: "$180.00",
+      discount: "-15%",
       image: singlepro3,
     },
   ];
+  
 
   return (
-    <div className="min-h-screen mx-auto px-4 py-10">
-      {/* Product Detail */}
-      <div className="grid md:grid-cols-2 gap-10">
-        {/* Image Section */}
-        <div className="flex gap-4">
-          <div className="flex flex-col gap-3">
-            {thumbnails.map((img, i) => (
-              <img
-                key={i}
-                src={img}
-                alt={`thumb-${i}`}
-                onClick={() => setSelectedImage(img)}
-                className={`w-20 h-20 object-cover rounded border cursor-pointer ${
-                  selectedImage === img ? "border-[#00715D]" : "border-gray-300"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="flex-1">
-            <img src={selectedImage} alt="Selected" className="w-full h-auto rounded-lg" />
+    <div className="max-w-7xl mx-auto px-4 ">
+      <div className="grid md:grid-cols-2 gap-10 relative">
+        {/* Image Section with Thumbnails Below */}
+        <div className="relative w-full">
+          {/* Main Image */}
+          {/* Image Section with Thumbnails Below */}
+          <div className="relative w-full">
+            {/* Main Image */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsZooming(true)}
+              onMouseLeave={() => setIsZooming(false)}
+              onMouseMove={handleMouseMove}
+              onClick={() => {
+                if (window.innerWidth <= 768) setIsMobileZoomOpen(true);
+              }}
+            >
+              <div className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto">
+                <img
+                  ref={imageRef}
+                  src={selectedImage}
+                  alt="Selected"
+                  className="w-full h-auto rounded-md object-cover aspect-[4/3]"
+                />
+              </div>
+
+              {isZooming && (
+                <div
+                  className="hidden md:block absolute top-0 left-[105%] w-96 h-96 border border-gray-200 rounded-lg overflow-hidden z-30"
+                  style={{
+                    backgroundImage: `url(${selectedImage})`,
+                    backgroundSize: "200%",
+                    backgroundPosition: `${zoomPosition.x}% ${zoomPosition.y}%`,
+                  }}
+                ></div>
+              )}
+            </div>
+
+            {/* Thumbnails Below */}
+            <div className="flex gap-3 mt-4 justify-center">
+              {thumbnails.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`thumb-${i}`}
+                  onClick={() => setSelectedImage(img)}
+                  className={`w-20 h-20 object-cover rounded-lg cursor-pointer border transition ${
+                    selectedImage === img
+                      ? "border-[#00715D]"
+                      : "border-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
-
-        {/* Info Section */}
+      
+        {/* Product Info */}
         <div>
           <div className="flex justify-between items-start">
-            <h2 className="text-2xl font-semibold text-gray-800">Amrita Antique Designer</h2>
+            <h2 className="text-2xl font-semibold text-gray-800">
+              Amrita Antique Designer
+            </h2>
             <FiHeart className="text-gray-500 text-xl cursor-pointer" />
           </div>
 
@@ -90,7 +141,8 @@ const ProductDetail = () => {
           </div>
 
           <p className="text-gray-600 text-sm mt-4">
-            Timeless elegance in antique design. Ideal for gifting or special occasions.
+            Timeless elegance in antique design. Ideal for gifting or special
+            occasions.
           </p>
 
           {/* Color Picker */}
@@ -145,11 +197,17 @@ const ProductDetail = () => {
           {/* Quantity + Buttons */}
           <div className="flex items-center gap-4 mt-6">
             <div className="flex items-center border rounded-full px-4 py-1">
-              <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="text-lg px-2 text-gray-600">
+              <button
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                className="text-lg px-2 text-gray-600"
+              >
                 <FiMinus />
               </button>
               <span className="px-2 text-lg">{quantity}</span>
-              <button onClick={() => setQuantity(quantity + 1)} className="text-lg px-2 text-gray-600">
+              <button
+                onClick={() => setQuantity(quantity + 1)}
+                className="text-lg px-2 text-gray-600"
+              >
                 <FiPlus />
               </button>
             </div>
@@ -165,48 +223,87 @@ const ProductDetail = () => {
           {/* Shipping Info */}
           <div className="mt-6 text-sm text-gray-600 space-y-2">
             <div className="flex items-center gap-2">
-              <img src="https://cdn-icons-png.flaticon.com/512/891/891419.png" className="w-4 h-4" />
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/891/891419.png"
+                className="w-4 h-4"
+              />
               <span>Free worldwide shipping on orders over $100</span>
             </div>
             <div className="flex items-center gap-2">
-              <img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" className="w-4 h-4" />
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png"
+                className="w-4 h-4"
+              />
               <span>
                 Delivery in 3–7 Days –{" "}
-                <span className="underline cursor-pointer">Shipping & Returns</span>
+                <span className="underline cursor-pointer">
+                  Shipping & Returns
+                </span>
               </span>
             </div>
           </div>
         </div>
       </div>
 
+      <Producttab/>
+
       {/* Similar Products */}
-      <div className="mt-14">
-        <h3 className="text-xl font-semibold text-[#00715D] mb-6">Similar Products</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {similarProducts.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white rounded-xl transition p-4 text-center"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-80 object-cover rounded-md mb-4"
-              />
-              <h4 className="text-base font-medium text-gray-700 mb-2">{product.name}</h4>
-              <div className="flex justify-between">
-                <div className="flex gap-2">
-                  <span className="text-sm text-gray-500 line-through">{product.oldPrice}</span>
-                  <span className="text-sm font-semibold text-black">{product.newPrice}</span>
-                </div>
-                <button className="w-7 h-7 border border-gray-400 rounded-full text-sm font-bold hover:bg-[#00715D] hover:text-white transition">
-                  +
-                </button>
-              </div>
+      <div className="mt-14 mb-10">
+  <h3 className="text-xl font-semibold text-[#00715D] mb-6">
+    Similar Products
+  </h3>
+  <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {similarProducts.map((product) => (
+      <div key={product.id} className="group">
+        <div className="relative w-full aspect-[4/5] overflow-hidden rounded-md">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+        <div className="flex items-start justify-between mt-3">
+          <div>
+            <h3 className="line-clamp-1 text-base font-medium text-slate-800">
+              {product.name}
+            </h3>
+            <div className="mt-1 flex items-center gap-2 text-sm">
+              <span className="line-through text-slate-400">
+                {product.oldPrice}
+              </span>
+              <span className="text-slate-800 font-semibold">
+                {product.newPrice}
+              </span>
             </div>
-          ))}
+          </div>
+          <Link to="/Allproduct">
+            <button className="mt-0.5 h-6 w-6 flex items-center justify-center rounded-full border border-gray-400 hover:bg-gray-100 transition">
+              <FiPlus size={12} />
+            </button>
+          </Link>
         </div>
       </div>
+    ))}
+  </div>
+</div>
+
+
+      {/* Mobile Zoom Overlay */}
+      {isMobileZoomOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+          <img                                
+            src={selectedImage}
+            alt="Zoomed"
+            className="w-full h-auto max-w-[90%] max-h-[90%] object-contain"
+          />
+          <button
+            onClick={() => setIsMobileZoomOpen(false)}
+            className="absolute top-4 right-4 text-white text-3xl font-bold"
+          >
+            &times;
+          </button>
+        </div>
+      )}
     </div>
   );
 };

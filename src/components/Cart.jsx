@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import cart from "../Image/cart.svg";
 import { Link } from "react-router-dom";
+import { FiPlus, FiTrash2 } from "react-icons/fi"; // Updated icon import
+import cart from "../Image/cart.svg";
 
-const CheckoutTabs = () => {
+const Cart = () => {
   const [cartItems, setCartItems] = useState([
     { id: 1, name: "Amrita Antique Designer", price: 180, qty: 1 },
     { id: 2, name: "Amrita Antique Designer", price: 180, qty: 1 },
@@ -11,25 +12,34 @@ const CheckoutTabs = () => {
   ]);
 
   const handleQtyChange = (id, delta) => {
-    setCartItems(prev =>
-      prev.map(item =>
-        item.id === id
-          ? { ...item, qty: Math.max(1, item.qty + delta) }
-          : item
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, qty: Math.max(1, item.qty + delta) } : item
       )
     );
   };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const discount = 0;
-  const total = subtotal - discount;
+  const handleRemove = (id) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0
+  );
+  const total = subtotal;
 
   return (
-    <div className="px-4 py-6 bg-white min-h-screen">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-        {/* Cart Items Table */}
-        <div className="lg:col-span-2 bg-white rounded-md shadow overflow-hidden w-full">
-          <div className="bg-[#04675C] text-white font-semibold px-4 py-3 hidden sm:grid grid-cols-6 text-sm">
+    <div className="px-4 sm:px-6 lg:px-8 py-8 bg-white min-h-screen">
+         <div className="text-sm text-gray-500 mb-4">
+  <Link to="/" className="text-black">Home</Link> / <span className="text-black">Cart</span>
+</div>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        {/* Cart Table */}
+        <div className="lg:col-span-2 w-full bg-white rounded-md shadow overflow-hidden">
+          {/* Desktop Header */}
+          <div className="hidden sm:grid grid-cols-6 gap-4 bg-[#04675C] text-white px-6 py-3 font-semibold text-sm uppercase tracking-wide">
             <div className="col-span-3">Product</div>
             <div className="text-center">Price</div>
             <div className="text-center">Quantity</div>
@@ -39,41 +49,76 @@ const CheckoutTabs = () => {
           {cartItems.map((item) => (
             <div
               key={item.id}
-              className="grid grid-cols-1 sm:grid-cols-6 items-center gap-4 px-4 py-4 border-t border-gray-300 text-sm"
+              className="border-t border-gray-200 px-4 py-6 text-sm grid grid-cols-1 sm:grid-cols-6 gap-4 items-center"
             >
-              <div className="sm:col-span-3 flex items-center gap-3">
-                <button className="text-[#04675C] text-xl">×</button>
-                <img src={cart} alt="product" className="w-12 h-12 object-cover rounded" />
-                <span className="text-gray-700">{item.name}</span>
-              </div>
-              <div className="text-center">${item.price.toFixed(2)}</div>
-              <div className="flex justify-center items-center gap-2 border px-4 py-1 rounded-full w-fit mx-auto">
+              {/* Product Info */}
+              <div className="sm:col-span-3 flex items-center gap-4">
                 <button
-                  className="text-gray-600 hover:text-black"
-                  onClick={() => handleQtyChange(item.id, -1)}
+                  onClick={() => handleRemove(item.id)}
+                  className="text-gray-400 text-xl font-bold"
                 >
-                  −
+                  <FiTrash2 size={18} />
                 </button>
-                <span className="w-6 text-center font-medium">{item.qty}</span>
-                <button
-                  className="text-gray-600 hover:text-black"
-                  onClick={() => handleQtyChange(item.id, 1)}
-                >
-                  ＋
-                </button>
+                <img
+                  src={cart}
+                  alt={item.name}
+                  className="w-12 h-12 rounded object-cover"
+                />
+                <span className="text-gray-800 font-medium">{item.name}</span>
               </div>
-              <div className="text-center">${(item.price * item.qty).toFixed(2)}</div>
+
+              {/* Mobile Price Row */}
+              <div className="md:hidden flex justify-between mr-[50px] text-gray-600">
+                <span className="ml-[90px]">Price</span>
+                <span>${item.price.toFixed(2)}</span>
+              </div>
+
+              {/* Quantity */}
+              <div className="md:col-span-1 flex items-center justify-between  md:justify-center">
+                <span className="md:hidden ml-[90px] text-gray-600">Qty</span>
+                <div className="flex items-center border border-gray-300 rounded-full px-4 py-1 gap-4">
+                  <button
+                    onClick={() => handleQtyChange(item.id, -1)}
+                    className="text-gray-600 hover:text-black"
+                  >
+                    −
+                  </button>
+                  <span className="font-medium">{item.qty}</span>
+                  <button
+                    onClick={() => handleQtyChange(item.id, 1)}
+                    className="text-gray-600 hover:text-black"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              {/* Mobile Total Row */}
+              <div className="md:hidden flex justify-between mr-[50px] text-gray-600">
+                <span className="ml-[90px]">Total</span>
+                <span>${(item.qty * item.price).toFixed(2)}</span>
+              </div>
+
+              {/* Desktop Price */}
+              <div className="hidden sm:block text-center text-gray-700">
+                ${item.price.toFixed(2)}
+              </div>
+
+              {/* Desktop Total */}
+              <div className="hidden sm:block text-center text-gray-800 font-semibold">
+                ${(item.qty * item.price).toFixed(2)}
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Cart Total Summary */}
+        {/* Cart Summary */}
         <div className="bg-white rounded-md shadow-md overflow-hidden w-full h-fit">
           <div className="bg-[#04675C] text-white font-semibold px-6 py-3">
             Cart Total
           </div>
           <div className="p-6 space-y-4 text-sm">
-            <div className="flex justify-between  border-b border-gray-300 pb-2">
+            <div className="flex justify-between border-b border-gray-300 pb-2">
               <span className="text-[#04675C] font-semibold">SUBTOTAL</span>
               <span className="text-gray-700">${subtotal.toFixed(2)}</span>
             </div>
@@ -97,4 +142,4 @@ const CheckoutTabs = () => {
   );
 };
 
-export default CheckoutTabs;
+export default Cart;

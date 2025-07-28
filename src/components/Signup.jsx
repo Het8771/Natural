@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import login from "../Image/login.svg";
+import { Link } from "react-router-dom";
 
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -8,16 +9,16 @@ const SignupPage = () => {
   const [agreed, setAgreed] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-4">
+    <div className="max-w-7xl max-auto bg-white flex items-center justify-center p-4">
       <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row w-full max-w-5xl">
         {/* Left Side - Form */}
         <div className="w-full md:w-1/2 p-10">
           <h2 className="text-2xl font-semibold text-[#04675C] mb-2">Signup</h2>
           <p className="text-sm text-gray-600 mb-6">
             Already Have An Account,{" "}
-            <a href="#" className="underline font-medium">
+            <Link to="/Login" className="underline font-medium">
               Login.
-            </a>
+            </Link>
           </p>
 
           <form className="space-y-4">
