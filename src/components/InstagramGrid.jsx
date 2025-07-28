@@ -7,11 +7,11 @@ import {
 } from "react-icons/fa";
 
 /* --- image imports --- */
-import about1 from "../Image/about1.svg";
-import insta from "../Image/insta.svg";
-import insta2 from "../Image/insta2.svg";
-import insta3 from "../Image/insta3.svg";
-import about3 from "../Image/about3.svg";
+import about1 from "../image/about1.svg";
+import insta from "../image/insta.svg";
+import insta2 from "../image/insta2.svg";
+import insta3 from "../image/insta3.svg";
+import about3 from "../image/about3.svg";
 
 const thumbs = [about1, insta, insta2, insta3, about1, insta2, insta, about1];
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { FiEye, FiHeart, FiShoppingCart } from "react-icons/fi";
-import earring from "../Image/singlepro2.svg";
+import earring from "../image/singlepro2.svg";
 import { Link } from "react-router-dom";
 import { FiPlus, FiArrowRight } from "react-icons/fi";
 

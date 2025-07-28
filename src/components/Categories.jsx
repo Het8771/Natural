@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import product from "../Image/singlepro2.svg";
+import product from "../image/singlepro2.svg";
 import {
   GiDiamondRing,
   GiEarrings,

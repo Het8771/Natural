@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import login from "../Image/login.svg";
+import login from "../image/login.svg";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);

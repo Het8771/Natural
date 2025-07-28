@@ -1,5 +1,5 @@
 import React from "react";
-import about1 from "../Image/about1.svg";
+import about1 from "../image/about1.svg";
 
 const DiamondShapes = () => {
   return (

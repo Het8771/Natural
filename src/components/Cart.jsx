@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiPlus, FiTrash2 } from "react-icons/fi"; // Updated icon import
-import cart from "../Image/cart.svg";
+import cart from "../image/cart.svg";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([

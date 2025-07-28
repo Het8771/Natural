@@ -1,11 +1,11 @@
 import { FiChevronLeft, FiChevronRight, FiPlus, FiEye, FiHeart, FiShoppingCart } from "react-icons/fi";
-import bannerImg from "../Image/newbanner.svg";
-import prod1 from "../Image/singlepro2.svg";
-import prod2 from "../Image/singlepro4.svg";
-import prod3 from "../Image/singlepro2.svg";
-import prod4 from "../Image/singlepro4.svg";
-import prod5 from "../Image/singlepro2.svg";
-import prod6 from "../Image/singlepro4.svg";
+import bannerImg from "../image/newbanner.svg";
+import prod1 from "../image/singlepro2.svg";
+import prod2 from "../image/singlepro4.svg";
+import prod3 from "../image/singlepro2.svg";
+import prod4 from "../image/singlepro4.svg";
+import prod5 from "../image/singlepro2.svg";
+import prod6 from "../image/singlepro4.svg";
 import { Link } from "react-router-dom";
 
 // Dummy products

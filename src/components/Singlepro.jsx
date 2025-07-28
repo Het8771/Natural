@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import { FiMinus, FiPlus, FiHeart } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
-import singlepro from "../Image/singlepro.svg";
-import singlepro2 from "../Image/singlepro2.svg";
-import singlepro3 from "../Image/singlepro3.svg";
+import singlepro from "../image/singlepro.svg";
+import singlepro2 from "../image/singlepro2.svg";
+import singlepro3 from "../image/singlepro3.svg";
 import { Link } from "react-router-dom";
 import Producttab from "../components/Producttab";
 

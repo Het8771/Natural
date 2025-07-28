@@ -20,9 +20,9 @@
 
   import { useState, useEffect } from "react";
   import { ChevronLeft, ChevronRight } from "lucide-react";
-  import home1 from "../Image/home1.svg";
-  import diamond1 from "../Image/diamond1.svg";
-  import diamond2 from "../Image/diamond2.svg";
+  import home1 from "../image/home1.svg";
+  import diamond1 from "../image/diamond1.svg";
+  import diamond2 from "../image/diamond2.svg";
 
   const slides = [
     { image: home1 },

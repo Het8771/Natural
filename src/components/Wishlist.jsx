@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FiTrash2 } from "react-icons/fi";
-import wishlisti from "../Image/wishlisti.svg";
+import wishlisti from "../image/wishlisti.svg";
 import { Link } from "react-router-dom";
 
 const Wishlist = () => {
