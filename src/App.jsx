@@ -14,7 +14,7 @@ import Singlepro from "./components/Singlepro";
 import Home from "./components/Home";
 import Profilepage from "./components/Profilepage";
 import Allproduct from "./components/Allproduct";
-import Diamond from "./components/Diamond";
+// import Diamond from "./components/Diamond";
 import Customize from "./components/Customize";
 import Producttab from "./components/Producttab";
 
@@ -47,7 +47,7 @@ function App() {
         <Route path="/Singlepro" element={<Singlepro />} />
         <Route path="/Profilepage" element={<Profilepage />} />
         <Route path="/Allproduct" element={<Allproduct />} />
-        <Route path="/Diamond" element={<Diamond />} />
+        {/* <Route path="/Diamond" element={<Diamond />} /> */}
         <Route path="/Customize" element={<Customize />} />
         <Route path="/Producttab" element={<Producttab />} />
 
