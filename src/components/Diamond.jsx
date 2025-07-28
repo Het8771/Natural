@@ -12,21 +12,21 @@ import { Truck, ShieldCheck, Headset } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Images
-import diamond from "../Image/diamond.svg";
-import Oval from "../Image/Oval.svg";
-import Pear from "../Image/Pear.svg";
-import Princess from "../Image/Princess.svg";
-import Radiant from "../Image/Radiant.svg";
-import Round from "../Image/Round.svg";
-import Heart from "../Image/Heart.svg";
-import Marquise from "../Image/Marquise.svg";
-import Cushion from "../Image/Cushion.svg";
-import Emerald from "../Image/Emerald.svg";
-import earring from "../Image/singlepro2.svg";
-import diamond1 from "../Image/diamond1.svg";
-import diamond2 from "../Image/diamond2.svg";
-import diamond3 from "../Image/diamond3.svg";
-import diamond4 from "../Image/diamond4.svg";
+import diamond from "../image/diamond.svg";
+import Oval from "../image/Oval.svg";
+import Pear from "../image/Pear.svg";
+import Princess from "../image/Princess.svg";
+import Radiant from "../image/Radiant.svg";
+import Round from "../image/Round.svg";
+import Heart from "../image/Heart.svg";
+import Marquise from "../image/Marquise.svg";
+import Cushion from "../image/Cushion.svg";
+import Emerald from "../image/Emerald.svg";
+import earring from "../image/singlepro2.svg";
+import diamond1 from "../image/diamond1.svg";
+import diamond2 from "../image/diamond2.svg";
+import diamond3 from "../image/diamond3.svg";
+import diamond4 from "../image/diamond4.svg";
 
 const diamondShapes = [
   { label: "OVAL", image: Oval },
