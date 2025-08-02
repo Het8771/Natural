@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaRing, FaGem } from "react-icons/fa";
 import { GiDiamondRing } from "react-icons/gi";
-import customize from "../Image/customize.svg";
-import customize1 from "../Image/customize1.svg";
+import customize from "../image/customize.svg";
+import customize1 from "../image/customize1.svg";
 import { Link } from "react-router-dom";
 
 // Shape image mapping
