@@ -59,7 +59,7 @@ const CreativeStudioBanner = () => {
           tools to create something exceptional, online or in showrooms.
         </p>
 
-        <Link to="/Customize">
+        <Link to="/Customize1">
           <button className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-slate-900 shadow hover:bg-slate-200 transition cursor-pointer">
             Customize Product
           </button>

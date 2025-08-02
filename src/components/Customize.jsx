@@ -1,15 +1,56 @@
 import React, { useState } from "react";
 import DiamondSear from "./DiamondSear";
 import Productgrid from "./Productgrid";
+import singlepro3 from "../image/singlepro3.svg";
+import { FiMinus, FiPlus, FiHeart,FiEye  } from "react-icons/fi";
+import { FiShoppingCart} from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const DiamondSearch = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [diamondType, setDiamondType] = useState("Natural");
+  const [isMobileZoomOpen, setIsMobileZoomOpen] = useState(false);
 
   const stepItems = [
     { step: 1, title: "Choose a Diamond" },
     { step: 2, title: "Choose a Setting" },
     { step: 3, title: "Complete Ring" },
+  ];
+
+  
+  const similarProducts = [
+    {
+      id: 1,
+      name: "Amrita Antique Designer",
+      oldPrice: "$230.00",
+      newPrice: "$200.00",
+      discount: "-13%",
+      image: singlepro3,
+    },
+    {
+      id: 2,
+      name: "Zara Royal Jewel",
+      oldPrice: "$220.00",
+      newPrice: "$190.00",
+      discount: "-14%",
+      image: singlepro3,
+    },
+    {
+      id: 3,
+      name: "Bella Grace Design",
+      oldPrice: "$240.00",
+      newPrice: "$210.00",
+      discount: "-12%",
+      image: singlepro3,
+    },
+    {
+      id: 4,
+      name: "Evelyn Gold Twist",
+      oldPrice: "$210.00",
+      newPrice: "$180.00",
+      discount: "-15%",
+      image: singlepro3,
+    },
   ];
 
   return (
@@ -218,7 +259,82 @@ const DiamondSearch = () => {
 
       {/* External Components */}
       <DiamondSear />
-      <Productgrid />
+       {/* Similar Products */}
+       <Link to ="/Singlepro1"><div className="mt-14 mb-10">
+  <h3 className="text-xl font-semibold text-[#00715D] mb-6">Similar Products</h3>
+  <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {similarProducts.map((product) => (
+      <div
+        key={product.id}
+        className="group relative border border-gray-200 rounded-lg overflow-hidden transition hover:shadow-lg"
+      >
+        {/* Discount Badge */}
+        {product.discount && (
+          <div className="absolute top-2 left-2 bg-[#00715D] text-white text-xs font-semibold px-2 py-0.5 rounded">
+            {product.discount}
+          </div>
+        )}
+
+        {/* Product Image */}
+       {/* Product Image */}
+<div className="relative overflow-hidden aspect-[4/5]">
+  <img
+    src={product.image}
+    alt={product.name}
+    className="w-full h-full object-cover transform group-hover:scale-105 transition duration-300"
+  />
+
+  {/* Top Right Icons (Appear on Hover) */}
+  <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <Link to="/Singlepro">
+      <button className="bg-white w-9 h-9 rounded-full shadow flex items-center justify-center hover:bg-gray-100 transition">
+        <FiEye className="text-gray-700 text-base" />
+      </button>
+    </Link>
+    <button className="bg-white w-9 h-9 rounded-full shadow flex items-center justify-center hover:bg-gray-100 transition">
+      <FiHeart className="text-gray-700 text-base" />
+    </button>
+  </div>
+
+  {/* Add to Cart on Hover */}
+  <div className="absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <Link to="/Cart">
+      <button className="w-full py-2 bg-[#00715D] text-white text-sm font-medium flex items-center justify-center gap-2">
+        <FiShoppingCart />
+        Add to Cart
+      </button>
+    </Link>
+  </div>
+</div>
+
+
+        {/* Product Info */}
+      <div className="flex items-start justify-between px-3 py-2 bg-white">
+          <div>
+            <h3 className="text-sm font-medium text-slate-800 line-clamp-1">
+              {product.name}
+            </h3>
+            <div className="mt-1 flex items-center gap-2 text-sm">
+              <span className="line-through text-gray-400">
+                {product.oldPrice}
+              </span>
+              <span className="text-[#0A0B33] font-semibold">
+                {product.newPrice}
+              </span>
+            </div>
+          </div>
+          <Link to="/Allproduct">
+            <button className="mt-0.5 h-6 w-6 flex items-center justify-center rounded-full border border-gray-400 hover:bg-gray-100 transition">
+              <FiPlus size={12} />
+            </button>
+          </Link>
+        </div>
+      </div>
+    ))}
+  </div>
+</div></Link>
+
+
     </div>
   );
 };

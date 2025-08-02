@@ -17,6 +17,10 @@ import Allproduct from "./components/Allproduct";
 import Diamond from "./components/Diamond";
 import Customize from "./components/Customize";
 import Producttab from "./components/Producttab";
+import Singlepro2 from "./components/Singlepro2";
+import Customize1 from "./components/Customize1";
+import Singlepro1 from "./components/Singlepro1";
+
 
 // ✅ Scroll to Top Component
 const ScrollToTop = () => {
@@ -49,7 +53,12 @@ function App() {
         <Route path="/Allproduct" element={<Allproduct />} />
         <Route path="/Diamond" element={<Diamond />} />
         <Route path="/Customize" element={<Customize />} />
+        <Route path="/Customize1" element={<Customize1 />} />
         <Route path="/Producttab" element={<Producttab />} />
+        <Route path="/Singlepro2" element={<Singlepro2 />} />
+        <Route path="/Singlepro1" element={<Singlepro1 />} />
+
+
 
       </Routes>
       <Footer />

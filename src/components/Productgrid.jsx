@@ -98,18 +98,18 @@ const ProductCard = ({ p }) => (
   </>
 );
 
-const ProductsSection = () => (
-  <section className="mx-auto max-w-7xl px-6 py-12">
+const  ProductsSection = () => (
+  <section className="mx-auto max-w-7xl px-2 py-5">
     <div className="mb-5 flex items-center justify-between">
       <h2 className="text-xl font-bold uppercase tracking-wide text-[#00715D]">
         All Product
       </h2>
-      <Link
+      {/* <Link
         to="/Allproducts"
         className="flex items-center gap-1 text-sm font-medium text-[#0d5b53] hover:underline"
       >
         View all <span className="text-lg leading-none">→</span>
-      </Link>
+      </Link> */}
     </div>
 
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
